@@ -7,26 +7,52 @@ import Comics from "./components/Comics";
 import { useScroll } from "./context/ScrollProvider";
 import Anime from "./components/Anime";
 import Collection from "./components/Collection";
+import Social from "./components/Social";
+import Last from "./components/Last";
 
 export default function Home() {
   const { logo, N } = useScroll();
   const scrollEnd = useRef(null);
 
   return (
-    <>
-      <section className="relative bg-main min-h-screen overflow-hidden">
-        <div id="N" ref={N} className="w-64 z-50 fixed top-0 opacity-0 h-full">
-          <Image src="/letter_n.webp" fill alt="naruto" className="object-contain" />
+    <section id="top" className="relative bg-main min-h-screen overflow-hidden">
+      <a className=" z-[999] fixed right-10 bottom-10" href="#top">
+        <Image
+          alt="page_top_btn"
+          src={"/page_top_btn_en.svg"}
+          width={50}
+          height={50}
+          className=" fixed bottom-1 right-2"
+        />
+      </a>
+      <div id="N" ref={N} className="w-64 z-50 fixed top-0 opacity-0 h-full">
+        <Image src="/letter_n.webp" fill alt="naruto" className="object-contain" />
+      </div>
+      <div ref={logo} className="fixed top-0 left-10 w-96 h-96 z-[99]">
+        <Image className="object-contain scale-100" fill src="/logo.webp" alt="logo" />
+      </div>
+      <Hero refScroll={scrollEnd} />
+      <StroySection />
+      <Comics />
+      <Anime />
+      <Collection />
+      <Social />
+      <Last />
+      <footer data-scroll-section className=" font-sans  bg-black text-white p-4">
+        <div className="flex items-center gap-3">
+          <Image src={"/shueisha_logo.svg"} width={100} height={100} alt={"logo"} />
+          <Image src={"/bne_logo.svg"} width={100} height={100} alt={"logo"} />
         </div>
-        <div ref={logo} className="fixed top-0 left-10 w-96 h-96 z-[99]">
-          <Image className="object-contain scale-100" fill src="/logo.webp" alt="logo" />
-        </div>
-        <Hero refScroll={scrollEnd} />
-        <StroySection />
-        <Comics />
-        <Anime />
-        <Collection />
-      </section>
-    </>
+        ©1999 by Masashi Kishimoto/ SHUEISHA Inc.
+        <br />
+        ©2016 by Masashi Kishimoto,Mikio Ikemoto/ SHUEISHA Inc.
+        <br />
+        ©2002 MASASHI KISHIMOTO
+        <br />
+        ©2002 MASASHI KISHIMOTO / 2007 SHIPPUDEN All Rights Reserved.
+        <br />
+        ©2002 MASASHI KISHIMOTO / 2017 BORUTO All Rights Reserved.
+      </footer>
+    </section>
   );
 }

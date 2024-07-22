@@ -20,7 +20,7 @@ const AutoScroll = () => {
     <div className="flex flex-col h-full  relative z-40">
       <Swiper
         loop={true}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
         pagination={{
           renderBullet: (_, className) => {
             return `<span class="w-12 h-12 bg-orange-500 rounded-full z-50  ${className} "></span>`;

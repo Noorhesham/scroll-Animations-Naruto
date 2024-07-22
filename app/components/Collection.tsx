@@ -11,7 +11,7 @@ const Collection = () => {
   const { N, scroller, changeNImageSrc } = useScroll();
 
   useEffect(() => {
-    gsap.set(kakashi.current, { clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)", opacity: 0 });
+    gsap.registerPlugin(ScrollTrigger);
 
     const trigger = ScrollTrigger.create({
       trigger: "#others",
@@ -30,12 +30,12 @@ const Collection = () => {
       },
     });
     gsap.to(kakashi.current, {
-      clipPath: "polygon(0px calc(14.0625vw), 100% 0px, 100% calc(100% - 14.0625vw), 0px 100%);",
+      clipPath: "polygon(0px 0px, 100% calc(14.0625vw), 100% 100%, 0px calc(100% - 14.0625vw))",
       opacity: 1,
-      duration: 6,
+      duration: 8,
       scrollTrigger: {
         trigger: kakashi.current,
-        start: "top 100%",
+        start: "top 80%",
         end: "1000",
         scrub: true,
         scroller: scroller.current,
@@ -135,7 +135,7 @@ const Collection = () => {
           </section>
         </MaxWidthWrapper>
         <div className=" min-h-[30vh] relative">
-          <div className=" jiraya"></div>
+          <div ref={kakashi} className=" w-full jiraya"></div>
         </div>
       </div>
     </section>

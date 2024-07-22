@@ -200,9 +200,9 @@ body {
   position: absolute;
   inset: calc(-290px - 7.03125vw) 0px;
   height: 720px;
-  clip-path: polygon(0px calc(14.0625vw), 100% 0px, 100% calc(100% - 14.0625vw), 0px 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   background: url("/intermission_3a_en.webp") center center / auto 820px no-repeat black;
-  transition: clip-path var(--ease-out-circ) 0.5s;
+  transition: clip-path cubic-bezier(0, 0.55, 0.45, 1) 0.5s;
 }
 .collectionbg {
   background-image: url("/bg_others.webp");
@@ -212,9 +212,29 @@ body {
 }
 .jiraya {
   position: absolute;
-    inset: calc(-290px - 7.03125vw) 0px;
-    height: 720px;
-    clip-path: polygon(0px 0px, 100% calc(14.0625vw), 100% 100%, 0px calc(100% - 14.0625vw));
-    background: url("/intermission_4a_en.webp") center center / auto 820px no-repeat black;
-    transition: clip-path cubic-bezier(0, 0.55, 0.45, 1) 0.5s;
+  inset: calc(-290px - 7.03125vw) 0px;
+  height: 720px;
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  background: url("/intermission_4a_en.webp") center center / auto 820px no-repeat black;
+  transition: clip-path cubic-bezier(0, 0.55, 0.45, 1) 0.5s;
+}
+.rocklee {
+  position: absolute;
+  inset: calc(-290px - 7.03125vw) 0px;
+  height: 720px;
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  background: url("/intermission_5a_en.webp") center center / auto 820px no-repeat black;
+  transition: clip-path cubic-bezier(0, 0.55, 0.45, 1) 0.5s;
+}
+
+.twitter-container {
+  width: 100%;
+  max-width: 550px; /* or any desired maximum width */
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+.twitter-container > div {
+  width: 100% !important;
+  height: auto !important;
 }

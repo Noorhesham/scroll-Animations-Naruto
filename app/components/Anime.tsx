@@ -26,11 +26,10 @@ const Anime = () => {
         gsap.fromTo(N.current, { right: "-200px", opacity: 0 }, { right: "10px", opacity: 1, duration: 1 });
       },
     });
-    gsap.set(kakashi.current, { clipPath: "polygon(0 0, 100% 0,100% 100%, 0% 100%)", opacity: 0 });
     gsap.to(kakashi.current, {
-      clipPath: "polygon(0px -172px, 100% -247px, 100% 100%, 0% 100%)",
+      clipPath: "polygon(0px calc(14.0625vw), 100% 0px, 100% calc(100% - 14.0625vw), 0px 100%)",
       opacity: 1,
-      duration: 6,
+      duration: 8,
       scrollTrigger: {
         trigger: kakashi.current,
         start: "top 100%",
@@ -78,11 +77,11 @@ const Anime = () => {
               </div>
               <div className="flex  items-center  flex-col ">
                 <div className="  relative h-80 w-[14rem]">
-                  <Image src="/naruto1_visual.webp" alt="naruto" fill className=" object-cover" />
+                  <Image src="/naruto2_visual.webp" alt="naruto" fill className=" object-cover" />
                 </div>
                 <div className=" flex items-center relative bg-white p-4 w-full h-full px-4 py-2">
                   <Image
-                    src="/anime_logo_naruto_en.webp"
+                    src="/anime_logo_naruto_s_en.webp"
                     alt="naruto"
                     width={200}
                     height={200}
@@ -92,11 +91,11 @@ const Anime = () => {
               </div>
               <div className="flex  items-center  flex-col ">
                 <div className="  relative h-80 w-[14rem]">
-                  <Image src="/naruto1_visual.webp" alt="naruto" fill className=" object-cover" />
+                  <Image src="/boruto_visual.webp" alt="naruto" fill className=" object-cover" />
                 </div>
                 <div className=" flex items-center relative bg-white p-4 w-full h-full px-4 py-2">
                   <Image
-                    src="/anime_logo_naruto_en.webp"
+                    src="/anime_logo_boruto_en.webp"
                     alt="naruto"
                     width={200}
                     height={200}
@@ -109,8 +108,8 @@ const Anime = () => {
           </div>
         </MaxWidthWrapper>
       </div>
-      <section ref={kakashi} className="    absolute bottom-0  w-full min-h-[20vh]">
-        <div className="  kakashi3 w-full"></div>
+      <section  className="    absolute bottom-0  w-full min-h-[20vh]">
+        <div ref={kakashi} className="  kakashi3 w-full"></div>
       </section>
     </section>
   );
