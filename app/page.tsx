@@ -28,7 +28,7 @@ export default function Home() {
       <div id="N" ref={N} className="w-64 z-50 fixed top-0 opacity-0 h-full">
         <Image src="/letter_n.webp" fill alt="naruto" className="object-contain" />
       </div>
-      <div ref={logo} className="fixed top-0 left-10 w-96 h-96 z-[99]">
+      <div ref={logo} className="fixed top-0 left-10 lg:w-96 w-64 lg:h-96 h-64 z-[99]">
         <Image className="object-contain scale-100" fill src="/logo.webp" alt="logo" />
       </div>
       <Hero refScroll={scrollEnd} />
@@ -38,10 +38,14 @@ export default function Home() {
       <Collection />
       <Social />
       <Last />
-      <footer data-scroll-section className=" font-sans  bg-black text-white p-4">
-        <div className="flex items-center gap-3">
-          <Image src={"/shueisha_logo.svg"} width={100} height={100} alt={"logo"} />
-          <Image src={"/bne_logo.svg"} width={100} height={100} alt={"logo"} />
+      <footer data-scroll-section className=" min-h-[45vh] font-sans  bg-black text-white p-4">
+        <div className="flex items-center mb-5 text-sm gap-5">
+          <div className=" w-40 relative h-20">
+            <Image src={"/shueisha_logo.svg"} className=" object-contain" fill alt={"logo"} />
+          </div>
+          <div className=" w-40 relative h-20">
+            <Image src={"/bne_logo.svg"} className=" object-contain" fill alt={"logo"} />
+          </div>
         </div>
         ©1999 by Masashi Kishimoto/ SHUEISHA Inc.
         <br />

@@ -14,7 +14,7 @@ const Last = () => {
     const trigger = ScrollTrigger.create({
       trigger: "#last",
       start: "top center",
-      end: "bottom bottom+=1000",
+      end: "+=1000",
       markers: true,
       scroller: scroller.current,
       onEnter: () => {
@@ -36,22 +36,34 @@ const Last = () => {
     <section className="relative   " data-scroll-section id="last">
       <div className=" bg-[#d8d8d8] -mt-32 relative">
         <div className=" absolute bg-[#d8d8d8] rotate-[-7deg] scale-110 w-full h-full"></div>
-        <MaxWidthWrapper className="min-h-[50vh] flex items-center flex-col relative">
-          <section className="relative pb-[10rem] mt-[1rem]">
-            <div className="relative flex-wrap py-10 px-20 mr-5 gap-3  mb-10 h-full flex  items-start justify-start">
-              <Image src="/last1.jpg" width={400} height={400} alt="naruto" />
-              <Image src="/last2.png" width={400} height={400} alt="naruto" />
-              <Image src="/last3.jpg" width={400} height={400} alt="naruto" />
-              <Image src="/last4.jpg" width={400} height={400} alt="naruto" />
-              <Image src="/last5.jpg" width={400} height={400} alt="naruto" />
-              <Image src="/last6.jpg" width={400} height={400} alt="naruto" />
+        <MaxWidthWrapper className=" flex items-center flex-col relative">
+          <div className="relative pb-[10rem] mt-[1rem]">
+            <div className="relative flex-wrap py-10 px-20 mr-5 gap-3  mb-10  flex  items-start justify-start">
+              <div className=" w-96  h-32 relative">
+                <Image src="/last1.jpg" className=" object-contain" fill alt="naruto" />
+              </div>
+              <div className=" w-96  h-32 relative">
+                <Image src="/last2.png" className=" object-contain" fill alt="naruto" />
+              </div>
+              <div className=" w-96  h-32 relative">
+                <Image src="/last3.jpg" className=" object-contain" fill alt="naruto" />
+              </div>
+              <div className=" w-96  h-32 relative">
+                <Image src="/last4.jpg" className=" object-contain" fill alt="naruto" />
+              </div>
+              <div className=" w-96  h-32 relative">
+                <Image src="/last5.jpg" className=" object-contain" fill alt="naruto" />
+              </div>
+              <div className=" w-96  h-32 relative">
+                <Image src="/last6.jpg" className=" object-contain" fill alt="naruto" />
+              </div>
             </div>
             <p className=" max-w-[25rem] ml-20 text-xs text-black font-sans">
               This site includes machine-translated texts. Please be aware that you might find some unusual expressions
               that are difficult to understand. Some information on this site may vary depending on your region. The
               information on this site is up to date as of the time of publication.
             </p>
-          </section>
+          </div>
         </MaxWidthWrapper>
       </div>
     </section>

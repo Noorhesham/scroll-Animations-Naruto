@@ -108,7 +108,7 @@ const StroySection = () => {
                   />
                   <div
                     ref={card1}
-                    className="translate-x-32 opacity-0 translate-y-10 pr-32 relative max-w-xl tracking-wider py-16 px-8 bg-white"
+                    className="lg:translate-x-32 opacity-0 translate-y-10 pr-32 relative max-w-xl tracking-wider py-16 px-8 bg-white"
                   >
                     <Image
                       width={400}
@@ -128,7 +128,7 @@ const StroySection = () => {
                   </div>
                   <div
                     ref={card2}
-                    className="-translate-x-20 opacity-0 translate-y-10 max-w-xl pr-32 relative tracking-wider py-16 px-8 bg-white"
+                    className="lg:-translate-x-20 opacity-0 translate-y-10 max-w-xl pr-32 relative tracking-wider py-16 px-8 bg-white"
                   >
                     <Image
                       width={400}

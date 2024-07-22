@@ -12,24 +12,24 @@ import NarutoNinjaButton from "./NarutoNinjaButton";
 
 const data = [
   {
-    img: "/get.jpg",
+    img: "/giphy (2).webp",
     date: new Date().toLocaleDateString(),
     desc: "Kawaki (Karma Progression) Makes His First Appearance in NARUTO X BORUTO Ultimate Ninja STORM ...",
     isfeatured: true,
   },
   {
-    img: "/get.jpg",
+    img: "/news1.jpg",
     date: new Date().toLocaleDateString(),
     desc: "Kawaki (Karma Progression) Makes His First Appearance in NARUTO X BORUTO Ultimate Ninja STORM ...",
   },
   {
-    img: "/get.jpg",
+    img: "/news2.jpg",
     date: new Date().toLocaleDateString(),
     desc: "Kawaki (Karma Progression) Makes His First Appearance in NARUTO X BORUTO Ultimate Ninja STORM ...",
     isfeatured: true,
   },
   {
-    img: "/get.jpg",
+    img: "/giphy (1).webp",
     date: new Date().toLocaleDateString(),
     desc: "Kawaki (Karma Progression) Makes His First Appearance in NARUTO X BORUTO Ultimate Ninja STORM ...",
     isfeatured: true,
