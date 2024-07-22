@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import SlidingImage from "./SlidingImage";
 import Naruto from "./Naruto";

@@ -13,7 +13,7 @@ import Last from "./components/Last";
 export default function Home() {
   const { logo, N } = useScroll();
   const scrollEnd = useRef(null);
-
+  
   return (
     <section id="top" className="relative bg-main min-h-screen overflow-hidden">
       <a className=" z-[999] fixed right-10 bottom-10" href="#top">

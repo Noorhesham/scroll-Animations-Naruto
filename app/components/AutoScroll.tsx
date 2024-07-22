@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type SwiperType from "swiper";

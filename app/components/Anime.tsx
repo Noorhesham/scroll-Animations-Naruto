@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { useScroll } from "../context/ScrollProvider";

@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+"use client";
+
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import NarutoNinjaButton from "./NarutoNinjaButton";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Image from "next/image";
@@ -13,75 +15,78 @@ const StroySection = () => {
   const card2 = useRef(null);
   const { N, scroller, changeNImageSrc } = useScroll();
   useEffect(() => {
-    changeNImageSrc("/letter_n.webp");
-    gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap.timeline({ defaults: { ease: "none" } });
-    gsap.set(N.current, { right: "-200px", opacity: 0 });
-    gsap.set(kakashi.current, { clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)", opacity: 0 });
-    gsap.set(story.current, { clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)" });
-    ScrollTrigger.create({
-      trigger: "#story",
-      start: "top center",
-      end: "+=1000",
-      scroller: scroller.current,
-      onEnterBack: () => {
-        changeNImageSrc("/letter_n.webp");
-        gsap.fromTo(N.current, { right: "-200px", opacity: 0 }, { right: "10px", opacity: 1, duration: 1 });
-      },
-      onEnter: () => {
-        changeNImageSrc("/letter_n.webp");
-        gsap.fromTo(N.current, { right: "-200px", opacity: 0 }, { right: "10px", opacity: 1, duration: 1 });
-      },onLeaveBack: () => {
-        gsap.to(N.current, { right: "-200px", opacity: 0, duration: 1 });
-      }
-    });
-
-    tl.to(kakashi.current, {
-      clipPath: "polygon(0 0, 100% 0,100% 100%, 0% 100%)",
-      opacity: 1,
-      duration: 6,
-      scrollTrigger: {
-        trigger: kakashi.current,
-        start: "top 100%",
-        end: "1000",
-        scrub: true,
+    if (typeof window !== "undefined") {
+      changeNImageSrc("/letter_n.webp");
+      gsap.registerPlugin(ScrollTrigger);
+      const tl = gsap.timeline({ defaults: { ease: "none" } });
+      gsap.set(N.current, { right: "-200px", opacity: 0 });
+      gsap.set(kakashi.current, { clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)", opacity: 0 });
+      gsap.set(story.current, { clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)" });
+      ScrollTrigger.create({
+        trigger: "#story",
+        start: "top center",
+        end: "+=1000",
         scroller: scroller.current,
-      },
-      ease: "power4.inOut",
-    })
-      .to(story.current, {
+        onEnterBack: () => {
+          changeNImageSrc("/letter_n.webp");
+          gsap.fromTo(N.current, { right: "-200px", opacity: 0 }, { right: "10px", opacity: 1, duration: 1 });
+        },
+        onEnter: () => {
+          changeNImageSrc("/letter_n.webp");
+          gsap.fromTo(N.current, { right: "-200px", opacity: 0 }, { right: "10px", opacity: 1, duration: 1 });
+        },
+        onLeaveBack: () => {
+          gsap.to(N.current, { right: "-200px", opacity: 0, duration: 1 });
+        },
+      });
+
+      tl.to(kakashi.current, {
         clipPath: "polygon(0 0, 100% 0,100% 100%, 0% 100%)",
         opacity: 1,
+        duration: 6,
         scrollTrigger: {
-          trigger: story.current,
+          trigger: kakashi.current,
           start: "top 100%",
           end: "1000",
           scrub: true,
           scroller: scroller.current,
         },
+        ease: "power4.inOut",
       })
-      .to(card1.current, {
-        opacity: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: card1.current,
-          start: "top bottom",
-          end: "top center",
-          scrub: true,
-          scroller: scroller.current,
-        },
-      })
-      .to(card2.current, {
-        opacity: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: card2.current,
-          start: "top bottom",
-          end: "top center",
-          scrub: true,
-          scroller: scroller.current,
-        },
-      });
+        .to(story.current, {
+          clipPath: "polygon(0 0, 100% 0,100% 100%, 0% 100%)",
+          opacity: 1,
+          scrollTrigger: {
+            trigger: story.current,
+            start: "top 100%",
+            end: "1000",
+            scrub: true,
+            scroller: scroller.current,
+          },
+        })
+        .to(card1.current, {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: card1.current,
+            start: "top bottom",
+            end: "top center",
+            scrub: true,
+            scroller: scroller.current,
+          },
+        })
+        .to(card2.current, {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: card2.current,
+            start: "top bottom",
+            end: "top center",
+            scrub: true,
+            scroller: scroller.current,
+          },
+        });
+    }
   }, [scroller, changeNImageSrc, N]);
 
   return (
