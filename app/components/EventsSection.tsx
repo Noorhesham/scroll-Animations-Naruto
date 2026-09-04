@@ -255,79 +255,35 @@ const EventsSection = () => {
             </button>
           </div>
 
-          {/* Mobile Swipeable Full-Width Slider / Desktop 2x2 Grid */}
+          {/* Mobile: Swiper with AutoPlay & Continuous Touch Swiping */}
+          <div className="block lg:hidden w-full pb-6">
+            <Swiper
+              modules={[Autoplay]}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              spaceBetween={16}
+              slidesPerView={1.08}
+              centeredSlides={true}
+              className="w-full !overflow-visible"
+            >
+              {eventsList.map((item) => (
+                <SwiperSlide key={item.id} className="h-auto flex justify-center">
+                  <EventCard item={item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          {/* Desktop: Exact 2x2 Grid - 100% UNTOUCHED */}
           <div
             ref={cardsRef}
-            className="flex lg:grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-stretch w-full overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none no-scrollbar px-4 sm:px-6 lg:px-0 pb-6"
+            className="hidden lg:grid lg:grid-cols-2 gap-12 items-stretch w-full pb-6"
           >
             {eventsList.map((item) => (
-              <article
-                key={item.id}
-                className="group flex flex-col sm:flex-row items-stretch sm:items-start gap-4 sm:gap-6 bg-white transition-transform duration-200 w-[88vw] max-w-[420px] sm:max-w-lg lg:w-auto lg:max-w-none flex-shrink-0 lg:flex-shrink snap-center border lg:border-0 border-neutral-200 p-4 sm:p-5 lg:p-0 shadow-lg lg:shadow-none"
-              >
-                {/* Left: Square Image Container with Badges */}
-                <div className="relative w-full sm:w-56 md:w-64 aspect-square flex-shrink-0 border border-neutral-300 bg-white overflow-hidden shadow-sm">
-                  {/* ALWAYS Ribbon Badge (Orange) */}
-                  {item.isAlways && (
-                    <div className="absolute top-0 left-0 z-20 bg-[#FA9427] text-white text-[11px] font-bold font-sans px-2.5 py-0.5 uppercase tracking-wider">
-                      ALWAYS
-                    </div>
-                  )}
-
-                  {/* Event Thumbnail */}
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    fill
-                    className={`${
-                      item.imgContain ? "object-contain p-2" : "object-cover"
-                    } transition-transform duration-500 group-hover:scale-105`}
-                    sizes="(max-width: 640px) 100vw, 260px"
-                  />
-                </div>
-
-                {/* Right: Event Information */}
-                <div className="flex flex-col justify-between flex-1 min-w-0 py-1">
-                  <div>
-                    {/* Location Badge (if exists) */}
-                    {item.location && (
-                      <div className="mb-2">
-                        <span className="inline-block bg-neutral-200 text-neutral-800 text-[11px] font-sans font-bold px-2 py-0.5 uppercase tracking-wider">
-                          {item.location}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Title */}
-                    <h3 className="font-sans font-bold text-base sm:text-lg text-black leading-snug tracking-tight">
-                      {item.title}
-                    </h3>
-
-                    {/* Venue & Date */}
-                    <div className="mt-3">
-                      <p className="text-xs text-neutral-500 font-sans font-medium uppercase mb-0.5">
-                        {item.venueDateLabel}
-                      </p>
-                      <p className="text-xs sm:text-sm text-neutral-800 font-sans font-medium leading-relaxed whitespace-pre-line">
-                        {item.venueDate}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* More Details Button */}
-                  <div className="mt-5 pt-1">
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn inline-flex items-center gap-2 border-2 border-black bg-white hover:bg-black text-black hover:text-white transition-colors duration-200 px-4 py-2 text-xs sm:text-sm font-sans font-bold tracking-wider uppercase cursor-pointer"
-                    >
-                      <span>MORE DETAILS</span>
-                      <ExternalLinkIcon />
-                    </a>
-                  </div>
-                </div>
-              </article>
+              <EventCard key={item.id} item={item} />
             ))}
           </div>
 
