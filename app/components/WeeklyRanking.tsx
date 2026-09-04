@@ -166,32 +166,34 @@ const WeeklyRanking = () => {
         />
       </div>
 
-      {/* Left Scroll Spindle (Clearly divided from black bg with top & bottom protruding knobs) */}
-      <div className="absolute lg:block hidden left-1 sm:left-1.5 md:left-2 -top-3.5 sm:-top-4 -bottom-3.5 sm:-bottom-4 w-3.5 sm:w-4 md:w-6 z-30 pointer-events-none flex flex-col items-center">
-        {/* Top Knob: Black oval with white outline ring protruding above top white line */}
-        <div className="w-full aspect-[2/1] rounded-full border-[1.5px] border-white bg-black flex-shrink-0 flex items-center justify-center shadow-lg">
-          <div className="w-[60%] h-[55%] rounded-full border border-white/70 bg-black" />
-        </div>
-
-        {/* Vertical Spindle Rod with white border dividing it from the black section */}
-        <div className="w-[75%] flex-1 bg-black border-l-[1.5px] border-r-[1.5px] border-white relative overflow-hidden">
-          {/* Inner highlight line for realistic 3D scroll rod */}
-          <div className="absolute inset-y-0 left-[2px] w-[1px] bg-white/40" />
-          <picture className="w-full h-full block">
-            <source media="(max-width: 767px)" srcSet="/ranking_scroll_sp.webp" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/ranking_scroll.webp"
-              alt="scroll rod texture"
-              className="w-full h-full object-fill opacity-95 pointer-events-none"
-            />
-          </picture>
-        </div>
-
-        {/* Bottom Knob: Black oval with white outline ring protruding below bottom white line */}
-        <div className="w-full aspect-[2/1] rounded-full border-[1.5px] border-white bg-black flex-shrink-0 flex items-center justify-center shadow-lg">
-          <div className="w-[60%] h-[55%] rounded-full border border-white/70 bg-black" />
-        </div>
+      {/* Left Scroll Spindle (Taking 100% full height of the section from top to bottom) */}
+      <div
+        className="absolute left-1 sm:left-1.5 md:left-2 -top-[14px] sm:-top-[16px] md:-top-[20px] -bottom-[14px] sm:-bottom-[16px] md:-bottom-[20px] h-[calc(100%+28px)] sm:h-[calc(100%+32px)] md:h-[calc(100%+40px)] w-2.5 sm:w-3.5 md:w-5 lg:w-6 z-30 pointer-events-none select-none"
+        style={{
+          top: "-14px",
+          bottom: "-14px",
+          height: "calc(100% + 28px)",
+        }}
+      >
+        <picture
+          className="absolute inset-0 w-full h-full block"
+          style={{ width: "100%", height: "100%", display: "block" }}
+        >
+          <source media="(max-width: 767px)" srcSet="/ranking_scroll_sp.webp" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/ranking_scroll.webp"
+            alt="Weekly Ranking Scroll Spindle"
+            className="absolute inset-0 w-full h-full min-h-full block object-fill pointer-events-none select-none"
+            style={{
+              width: "100%",
+              height: "100%",
+              minHeight: "100%",
+              objectFit: "fill",
+              display: "block",
+            }}
+          />
+        </picture>
       </div>
 
       <MaxWidthWrapper className="relative z-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">

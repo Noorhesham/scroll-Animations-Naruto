@@ -25,7 +25,6 @@ function NarutoContextProvider({ children }: { children: React.ReactNode }) {
   const logo = useRef<any>(null);
   const N = useRef<any>(null);
   const [nSrc, setNSrc] = useState<string>("/letter_n.webp");
-  const [loading, setLoading] = useState(true);
 
   // Logo shrink on scroll - Desktop only (>= 1024px)
   useEffect(() => {
@@ -51,12 +50,6 @@ function NarutoContextProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Loading screen timer
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(t);
-  }, []);
-
   // Stable callback — won't cause ScrollTrigger re-creation in child sections
   const changeNImageSrc = useCallback((newSrc: string) => {
     setNSrc(newSrc);
@@ -71,16 +64,6 @@ function NarutoContextProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ScrollContext.Provider value={{ logo, N, nSrc, changeNImageSrc }}>
-      {loading && (
-        <div className="fixed w-full h-full bg-black/90 z-[5000] backdrop-brightness-50 inset-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="fixed z-[40000] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px]"
-            src="/photo.gif"
-            alt="loading"
-          />
-        </div>
-      )}
       {children}
     </ScrollContext.Provider>
   );
