@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -13,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        bebas: ["var(--font-bebas)", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -36,6 +45,15 @@ const config = {
           foreground: "hsl(var(--muted-foreground))",
         },
         main: "#FA9427",
+        ninja: {
+          black: "#0D0E11",
+          dark: "#16171B",
+          card: "#FFFFFF",
+          orange: "#FA9427",
+          vermilion: "#E63920",
+          gold: "#F8B600",
+          gray: "#EAEAEA",
+        },
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
@@ -55,20 +73,24 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        kunai: {
+          "0%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(6px)" },
+          "100%": { transform: "translateX(0)" },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        chakraPulse: {
+          "0%, 100%": { opacity: "0.4", transform: "scale(0.98)" },
+          "50%": { opacity: "0.8", transform: "scale(1.02)" },
         },
-        
+        floatSlow: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "kunai": "2s infinite alternate-reverse ease-in-out leftright",
+        kunai: "kunai 1s ease-in-out infinite",
+        chakraPulse: "chakraPulse 3s ease-in-out infinite",
+        floatSlow: "floatSlow 4s ease-in-out infinite",
       },
     },
   },

@@ -7,36 +7,45 @@ import SliderCards from "./SliderCards";
 import Image from "next/image";
 import AutoScroll from "./AutoScroll";
 
-const Hero = ({ refScroll }: { refScroll: React.RefObject<HTMLDivElement> }) => {
+const Hero = ({ refScroll }: { refScroll?: React.RefObject<HTMLDivElement> }) => {
   return (
-    <div data-scroll-section>
-      <Naruto />
-      <div className="relative sky px-10 min-h-[850px]">
-        <div
-          data-scroll
-          data-scroll-speed="-4"
-          className="overflow-hidden absolute left-0 py-3 px-10 w-full h-full -bottom-10"
-        >
+    <div className="relative w-full">
+      {/* 
+        Hero Visuals Layering (Exact order requested by user):
+        1. Sky (background on container)
+        2. Clouds (SlidingImage at z-10)
+        3. Mountain (mountain.webp at z-20, covering cloud bottom edge)
+        4. Naruto (standing on top of mountain at z-30)
+      */}
+      <div className="relative sky min-h-[640px] sm:min-h-[750px] md:min-h-[900px] lg:min-h-[850px] w-full overflow-hidden">
+        {/* Clouds sliding on sky */}
+        <div className="overflow-hidden absolute inset-0 w-full h-full z-10 pointer-events-none">
           <SlidingImage />
         </div>
+
+        {/* Hokage Mountain */}
         <Image
-          data-scroll
-          data-scroll-speed="-5"
           src="/mountain.webp"
-          alt="cloud"
+          alt="Hokage Mountain"
           width={1920}
           height={1080}
-          className="absolute parallax left-0 bottom-20 h-full z-10 object-cover"
+          priority
+          className="absolute parallax left-0 bottom-12 sm:bottom-16 md:bottom-20 h-full w-full z-20 object-cover pointer-events-none"
         />
+
+        {/* Naruto Character Layer */}
+        <Naruto />
       </div>
 
-      <div  className="min-h-96 bg-main -mt-20 relative h-full">
-        <div className="bg-main after:clip after:bg-main clip left-0 absolute w-full h-full -bottom-1 z-[35]"></div>
-        <div className="flex justify-start flex-col">
+      {/* News Slider Section (Pure bg-main, no overlapping tint on cards) */}
+      <div className="min-h-96 bg-main -mt-16 md:-mt-20 relative h-full z-30 pt-4">
+        <div className="flex justify-start flex-col relative z-40">
           <SliderCards />
         </div>
       </div>
-      <section className="py-20 overflow-hidden z-[37]  bg-main relative w-full">
+
+      {/* Second Slider: AutoScroll Banner Section */}
+      <section className="py-14 md:py-20 bg-main relative w-full z-30 overflow-hidden">
         <AutoScroll />
       </section>
     </div>

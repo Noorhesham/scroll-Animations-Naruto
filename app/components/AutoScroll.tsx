@@ -1,48 +1,56 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type SwiperType from "swiper";
 import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
+
 const imgs = ["get (1).jpg", "get (2).jpg", "get (2).png", "get.jpg", "get (1).png"];
+
 const AutoScroll = () => {
-  const [swiper, setSwiper] = React.useState<null | SwiperType>(null);
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const [slideConfig, setSlideConfig] = React.useState({
-    isBeginning: true,
-    isEnd: activeIndex === imgs.length - 1,
-  });
+  const [swiper, setSwiper] = useState<null | SwiperType>(null);
+
   useEffect(() => {
-    if (swiper) swiper.autoplay.start(); // Ensure autoplay starts
+    if (swiper && swiper.autoplay) {
+      swiper.autoplay.start();
+    }
   }, [swiper]);
+
   return (
-    <div className="flex flex-col h-full  relative z-40">
+    <div className="w-full relative z-40 flex flex-col items-center">
       <Swiper
         loop={true}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{
-          renderBullet: (_, className) => {
-            return `<span class="w-12 h-12 bg-orange-500 rounded-full z-50  ${className} "></span>`;
-          },
           clickable: true,
+          renderBullet: (_, className) => {
+            return `<span class="inline-block w-3.5 h-3.5 bg-black/60 rounded-full mx-2 transition-all duration-300 cursor-pointer ${className}"></span>`;
+          },
         }}
-        onSwiper={(swiper) => setSwiper(swiper)}
-        spaceBetween={0} // Adjust space between slides
-        slidesPerView={1.2} // Show edges of adjacent slides
+        onSwiper={(s) => setSwiper(s)}
+        spaceBetween={24}
+        slidesPerView={1.15}
         centeredSlides={true}
         modules={[Pagination, Autoplay]}
-        className="h-full w-full flex flex-col  z-40 pb-10 relative"
+        className="w-full flex flex-col z-40 pb-12 relative"
       >
         {imgs.map((img, i) => (
           <SwiperSlide
-            className="group hover:brightness-75 duration-100  cursor-pointer transition-all  relative"
+            className="group cursor-pointer transition-transform duration-300 relative overflow-hidden rounded-2xl shadow-2xl border-2 border-black/40"
             key={i}
           >
-            <div className="  w-full relative  min-h-[370px]">
-              <Image src={`/${img}`} alt="img" fill className="object-cover absolute w-full h-auto" />
+            {/* Definite height so Swiper and Image fill never collapse */}
+            <div className="w-full relative h-[240px] sm:h-[300px] md:h-[360px] lg:h-[400px]">
+              <Image
+                src={`/${img}`}
+                alt="Naruto Feature Banner"
+                fill
+                priority={i === 0}
+                className="object-cover w-full h-full group-hover:scale-105 duration-300"
+              />
             </div>
           </SwiperSlide>
         ))}

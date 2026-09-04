@@ -1,51 +1,59 @@
 "use client";
-import gsap, { Power2 } from "gsap";
+
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
-import { useGSAP } from "@gsap/react";
+import React, { useCallback, useEffect, useState } from "react";
 import NarutoNinjaButton from "./NarutoNinjaButton";
-import "swiper/css";
-import "swiper/css/pagination";
-const paragraphs = [
-  "I'm not going to run away, I never go back on my word! That's my nindo: my ninja way!",
-  "What I have is not a dream, because I will make it a reality. I'm going to restore my clan and destroy a certain someone.",
-  "you have to understand that feeling pain allows you to be kind to others.",
-  "I’m the only one who can bear the burden of all the hatred in the world now. I’ll handle all of it in a positive light. I am the Seventh Hokage, Naruto Uzumaki!",
-];
+
 const Naruto = () => {
-  const naruto1 = useRef<any>();
-  const [currentNaruto, setCurrentNaruto] = React.useState(1);
-  const tl = gsap.timeline();
-  useGSAP(
-    () => {
-      tl.from(naruto1.current, { opacity: 0, y: 50, filter: "blur(10px)", duration: 0.5, ease: Power2.easeInOut }).to(
-        naruto1.current,
-        { opacity: 1, y: 0, filter: "blur(0)", duration: 0.5, ease: Power2.easeInOut }
-      );
-    },
-    { dependencies: [currentNaruto] }
-  );
+  const [currentNaruto, setCurrentNaruto] = useState(1);
+
+  const handleNext = useCallback(() => {
+    setCurrentNaruto((c) => (c < 3 ? c + 1 : 1));
+  }, []);
+
+  // Auto-change between the 3 Naruto stances every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [handleNext, currentNaruto]);
 
   return (
-    <div>
-      <Image
-        ref={naruto1}
-        src={`/naruto${currentNaruto}.png`}
-        alt="Naruto"
-        width={1400}
-        height={1400}
-        className={`object-contain w-[45rem] ${
-          currentNaruto === 1 ? "-top-[14rem] z-[36]" : currentNaruto === 2 ? " -top-20 scale-90 z-[36]" : "-top-[20rem] scale-110 z-[36]"
-        }   left-1/2 cursor-pointer opacity-0 -translate-x-1/2   absolute   h-full`}
-      />
-      <NarutoNinjaButton
-        className="absolute right-20 text-3xl top-[36%] z-50"
-        onClick={() => setCurrentNaruto((c) => (c < 3 ? c + 1 : 1))}
-        text="Click Me !"
-      />
-      {/* <p className=" absolute left-20 top-1/2  z-[35] text-2xl font-semibold text-gray-50 max-w-2xl">
-        {paragraphs[currentNaruto - 1]}
-      </p> */}
+    <div className="absolute inset-0 w-full h-full pointer-events-none z-30">
+      <div className="relative w-full h-full">
+        {[1, 2, 3].map((num) => {
+          const positionClass =
+            num === 1
+              ? "top-20 sm:top-16 lg:top-[2rem] z-[36]"
+              : num === 2
+              ? "top-24 sm:top-20 lg:top-20 scale-100 lg:scale-110 z-[36]"
+              : "top-20 sm:top-16 lg:top-[2rem] scale-125 lg:scale-110 z-[36]";
+
+          return (
+            <Image
+              key={num}
+              src={`/naruto${num}.png`}
+              alt="Naruto"
+              width={1400}
+              height={1400}
+              priority
+              className={`object-contain w-[20rem] sm:w-[28rem] md:w-[36rem] lg:w-[45rem] h-full absolute left-1/2 -translate-x-1/2 cursor-pointer transition-all duration-700 ease-out select-none ${positionClass} ${
+                currentNaruto === num
+                  ? "opacity-100 blur-0 pointer-events-auto"
+                  : "opacity-0 blur-sm pointer-events-none"
+              }`}
+              onClick={handleNext}
+              title="Click to change stance!"
+            />
+          );
+        })}
+      </div>
+
+      {/* Click Me! button */}
+      <div className="absolute right-4 sm:right-10 md:right-16 lg:right-20 bottom-16 sm:bottom-20 lg:bottom-auto lg:top-[36%] z-50 pointer-events-auto text-base sm:text-2xl lg:text-3xl">
+        <NarutoNinjaButton className="text-base sm:text-2xl lg:text-3xl" onClick={handleNext} text="Click Me !" />
+      </div>
     </div>
   );
 };
